@@ -62,8 +62,9 @@
                             <div class="form-group mb-3">
                                 <label for="role" class="form-label">Role <span class="text-danger">*</span></label>
                                 <select name="role" id="role" class="form-control" required>
-                                    <option value="USER" <?= ($user['role'] == 'USER') ? 'selected' : '' ?>>USER</option>
                                     <option value="ITSO PERSONNEL" <?= ($user['role'] == 'ITSO PERSONNEL') ? 'selected' : '' ?>>ITSO PERSONNEL</option>
+                                    <option value="STUDENT" <?= ($user['role'] == 'STUDENT') ? 'selected' : '' ?>>STUDENT</option>
+                                    <option value="ASSOCIATE" <?= ($user['role'] == 'ASSOCIATE') ? 'selected' : '' ?>>ASSOCIATE</option>
                                 </select>
                             </div>
                             <div class="form-group d-flex gap-2">

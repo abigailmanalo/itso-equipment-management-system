@@ -129,7 +129,7 @@ class Validation extends BaseConfig
 
         'role' => [
             'label' => 'Role',
-            'rules' => 'required|in_list[USER,ITSO PERSONNEL,STUDENT,ASSOCIATE]',
+            'rules' => 'required|in_list[ITSO PERSONNEL,STUDENT,ASSOCIATE]',
             'errors' => [
                 'required' => 'Please select a role.',
                 'in_list' => 'Please select a valid role.'
@@ -198,7 +198,7 @@ class Validation extends BaseConfig
 
         'role' => [
             'label' => 'Role',
-            'rules' => 'required|in_list[USER,ITSO PERSONNEL,STUDENT,ASSOCIATE]',
+            'rules' => 'required|in_list[ITSO PERSONNEL,STUDENT,ASSOCIATE]',
             'errors' => [
                 'required' => 'Please select a role.',
                 'in_list' => 'Please select a valid role.'

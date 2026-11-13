@@ -80,7 +80,7 @@ class Auth extends BaseController
             'email'     => $this->request->getPost('email'),
             'password'  => $this->request->getPost('password'),
             'confirmpassword' => $this->request->getPost('confirmpassword'),
-            'role'      => 'USER'
+            'role'      => 'STUDENT'
         ];
 
         if(! $validation->run($data, 'signup')){
@@ -90,13 +90,18 @@ class Auth extends BaseController
             return redirect()->to('/register');
         }
 
+        // Public sign-ups are always STUDENT. The only exception is the very first
+        // account on a fresh install, which becomes ITSO PERSONNEL so the system has
+        // an admin. Other roles are assigned by ITSO PERSONNEL from the Users page.
+        $isFirstUser = $userModel->countAllResults() === 0;
+
         $user = [
             'id_number'       => $data['id_number'],
             'firstname'       => $data['firstname'],
             'lastname'        => $data['lastname'],
             'email'           => $data['email'],
             'password'        => password_hash($data['password'], PASSWORD_DEFAULT),
-            'role'            => 'ITSO PERSONNEL', // default role for public sign ups
+            'role'            => $isFirstUser ? 'ITSO PERSONNEL' : 'STUDENT',
             'profile_picture' => 'default.jpg',
             'verify_token'    => bin2hex(random_bytes(16)),
             'is_verified'     => 0,

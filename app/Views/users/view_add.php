@@ -59,7 +59,6 @@
                                 <label for="role" class="form-label">Role <span class="text-danger">*</span></label>
                                 <select name="role" id="role" class="form-select">
                                     <option value="">Select Role</option>
-                                    <option value="USER" <?= set_value('role') == 'USER' ? 'selected' : '' ?>>USER</option>
                                     <option value="ITSO PERSONNEL" <?= set_value('role') == 'ITSO PERSONNEL' ? 'selected' : '' ?>>ITSO PERSONNEL</option>
                                     <option value="STUDENT" <?= set_value('role') == 'STUDENT' ? 'selected' : '' ?>>STUDENT</option>
                                     <option value="ASSOCIATE" <?= set_value('role') == 'ASSOCIATE' ? 'selected' : '' ?>>ASSOCIATE</option>
