@@ -1,60 +1,207 @@
-# CodeIgniter 4 Framework
+# ITSO Equipment Management System
 
-## What is CodeIgniter?
+A web-based system for managing, borrowing, and reserving IT equipment, built for the **Institute of Technology Services Office (ITSO)** at **FEU Institute of Technology**.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Students and associates can request equipment online. ITSO personnel can track inventory, process requests and returns, and export reports.
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+> Developed for academic fulfillment at FEU Institute of Technology, **BSITWMA Program**.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+---
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+## Table of Contents
 
-## Important Change with index.php
+- [Features](#features)
+- [User Roles](#user-roles)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Database](#database)
+- [Getting Started](#getting-started)
+- [Routes Overview](#routes-overview)
+- [Development Team](#development-team)
+- [License](#license)
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+---
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## Features
 
-**Please** read the user guide for a better explanation of how CI4 works!
+### Accounts and Authentication
+- Register and log in with an ID number and password
+- Email verification on registration
+- Forgot password and reset password through an emailed link that expires
+- Profile page: upload or remove a profile picture, change password
+- Role-based redirects and menus after login
 
-## Repository Management
+### Equipment Management
+- Add, view, edit, deactivate, and reactivate equipment
+- Track **total quantity** and **available count** for each item
+- **Equipment bundles**: accessories are linked to a main item (for example, a laptop includes a charger). Borrowing or returning the main item updates the accessories' stock automatically.
+- Active and unusable equipment lists
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+### Borrowing
+- Students and associates submit borrow requests (equipment, room, date, time)
+- ITSO personnel mark requests as **received** and **returned**
+- Stock is checked so inactive or unavailable equipment can't be borrowed
+- Borrowing history
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+### Reservations (Associates)
+- Reserve equipment for a future date and time
+- Cancel or reschedule a reservation
+- ITSO personnel mark reservations as received and returned
 
-## Contributing
+### Email Notifications
+Sent over SMTP for:
+- Account verification and password reset
+- Borrow confirmation and return confirmation
+- Reservation confirmation, return, cancellation, and reschedule
 
-We welcome contributions from the community.
+### Reports
+- Active equipment report
+- Unusable equipment report
+- Borrowing history report
+- Each report can be **exported as CSV**
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+### User Management (ITSO Personnel)
+- Add, view, edit, and delete user accounts
+- Assign roles
 
-## Server Requirements
+---
 
-PHP version 8.1 or higher is required, with the following extensions installed:
+## User Roles
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+| Role | Access |
+|---|---|
+| **ITSO Personnel** | Dashboard, user management, equipment management, reservations, borrowed and returned items, reports |
+| **Associate** | Dashboard, view equipment, borrow equipment, **reserve** equipment |
+| **Student** | Dashboard, view equipment, borrow equipment |
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
-> - The end of life date for PHP 8.1 will be December 31, 2025.
+---
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+## Tech Stack
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+| Layer | Technology |
+|---|---|
+| Backend | PHP 8.1+, [CodeIgniter 4](https://codeigniter.com) (MVC) |
+| Database | MySQL / MariaDB (MySQLi driver) |
+| Frontend | HTML, CSS, JavaScript, Bootstrap 5.3, Bootstrap Icons |
+| Email | CodeIgniter Email library over SMTP (Gmail) |
+| Local server | XAMPP (Apache + MySQL) |
+
+---
+
+## Project Structure
+
+```
+PixelCore/
+├── app/
+│   ├── Config/          # App, database, email, routes, and validation config
+│   ├── Controllers/     # Auth, Dashboard, Users, Equipment, Borrow, Reserve, Reports
+│   ├── Models/          # UserModel, EquipmentModel, EquipmentBundleModel, BorrowModel, ReserveModel
+│   ├── Services/        # EmailService (all email notifications)
+│   └── Views/           # Pages grouped by module (borrow/, reserve/, equipments/, users/, include/)
+├── public/              # Front controller, CSS, JS, images, uploaded profile pictures
+├── system/              # CodeIgniter 4 framework core
+├── writable/            # Logs, cache, sessions (not committed)
+├── itso.sql             # Database schema and starter data
+└── .env                 # Local environment settings (not committed)
+```
+
+---
+
+## Database
+
+The schema is in [`itso.sql`](itso.sql) and creates these tables:
+
+| Table | Purpose |
+|---|---|
+| `tblusers` | Accounts, roles, verification and password-reset tokens |
+| `tblequipment` | Equipment items, quantity, available count, status |
+| `tblequipment_bundles` | Links main equipment to its accessories |
+| `tblborrows` | Borrow requests and their status |
+| `tblreservations` | Reservations and their status |
+
+The script includes starter equipment and bundle data. It does **not** include any user accounts.
+
+---
+
+## Getting Started
+
+### Requirements
+- [XAMPP](https://www.apachefriends.org/) (or any Apache + PHP 8.1+ + MySQL setup)
+- PHP extensions: `intl`, `mbstring`, `mysqli`
+- A Gmail account with an [App Password](https://support.google.com/accounts/answer/185833), for sending emails
+
+### 1. Clone the repository
+Clone it into XAMPP's `htdocs` folder under the name `PixelCore`:
+
+```bash
+cd C:/xampp/htdocs
+git clone https://github.com/abigailmanalo/itso-equipment-management-system.git PixelCore
+```
+
+> If you use a different folder name, update `$baseURL` in `app/Config/App.php`. The default is `http://localhost/PixelCore/`.
+
+### 2. Set up the database
+1. Start **Apache** and **MySQL** in the XAMPP Control Panel.
+2. Open [phpMyAdmin](http://localhost/phpmyadmin) and create a database named **`itso`**.
+3. Select the `itso` database, go to **Import**, and import `itso.sql`.
+
+The default connection settings (`localhost`, user `root`, no password) are in `app/Config/Database.php`.
+
+### 3. Configure the environment
+Create a file named `.env` in the project root:
+
+```ini
+CI_ENVIRONMENT = development
+
+email.SMTPUser = your-email@gmail.com
+email.SMTPPass = your-gmail-app-password
+```
+
+> Never commit `.env`. It's already listed in `.gitignore`.
+
+### 4. Run the app
+Open **http://localhost/PixelCore/** in your browser.
+
+### 5. Create your first account
+Go to **/register** and sign up, then sign in at **/login** with your ID number and password.
+
+- The **first account** registered on a fresh install becomes **ITSO Personnel** (admin).
+- Every sign-up after that is a **Student**.
+- ITSO Personnel can change a user's role (Student, Associate, or ITSO Personnel) from **Users → Edit**.
+
+---
+
+## Routes Overview
+
+| Module | Main routes |
+|---|---|
+| Auth | `/login`, `/register`, `/logout`, `/forgot-password`, `/reset-password/{token}` |
+| Profile | `/profile`, `/profile/change-password` |
+| Dashboard | `/dashboard`, `/equipments`, `/reservations`, `/borrowed`, `/returned` |
+| Users | `/users`, `/users/add`, `/users/view/{id}`, `/users/edit/{id}` |
+| Equipment | `/equipment`, `/equipment/add`, `/equipment/view/{id}`, `/equipment/edit/{id}` |
+| Borrow | `/borrow`, `/borrow/received/{id}`, `/borrow/returned/{id}` |
+| Reserve | `/reserve`, `/reserve/cancel/{id}`, `/reserve/reschedule/{id}` |
+| Reports | `/reports`, `/active-equipment`, `/unusable-equipment`, `/borrowing-history` |
+
+The full list is in [`app/Config/Routes.php`](app/Config/Routes.php).
+
+---
+
+## Development Team
+
+**Team PixelCore**, BSITWMA, FEU Institute of Technology
+
+| Name | Role |
+|---|---|
+| [Abigail Manalo](https://github.com/abigailmanalo) | Back-end Developer |
+| Hazel Mito| Front-end Developer |
+| Ria Cruz | Leader |
+
+---
+
+## License
+
+This project was created for academic purposes at FEU Institute of Technology.
+
+It is built on the [CodeIgniter 4](https://codeigniter.com) framework, which is licensed under the MIT License. See [`LICENSE`](LICENSE).
