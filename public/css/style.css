@@ -1,0 +1,496 @@
+
+        body {
+            background: #f3f7ef;
+            font-family: "Poppins", sans-serif;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;              
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            background: #4B763A;
+            padding-top: 10px;
+
+            display: flex;
+            flex-direction: column;
+
+            overflow-y: auto;           
+            overflow-x: hidden;
+        }
+
+        .sidebar a {
+            text-decoration: none !important;
+        }
+
+        .sidebar-logo {
+            width: 120px;
+            display: block;
+            margin: 0 auto 30px auto;
+        }
+
+        .sidebar .profile-box p {
+            margin: 0;
+            color: #F7E967;
+        }
+
+        .sidebar-content {
+            flex-grow: 1;
+            overflow-y: auto;    
+        }
+
+        .sidebar-menu .menu-item {
+            display: block;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+
+        .menu-item,
+        .menu-item:hover,
+        .menu-item.active {
+            color: #FEFD8E !important;
+        }
+        
+        .stat-card p,
+        .stat-value,
+        .label-text {
+            color: #FEFD8E !important;
+        }
+
+        .menu-item {
+            padding: 19px 30px;
+            margin-bottom: 10px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background: white;
+            color: #325B2E !important; 
+            border-radius: 0 40px 40px 0;
+        }
+
+        .dashboard-container {
+            margin-left: 250px;
+            padding: 30px;
+           
+        }
+
+        .dash-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4B763A;
+        }
+
+        .dash-subtitle{
+            color: black;
+
+        }
+
+        .stat-card {
+            background: #4B763A;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 3px 8px rgba(0,0,0,0.15);
+        }
+
+        .stat-value {
+            font-size: 42px;
+            font-weight: 800;
+        }
+
+        table {
+            background: white;
+        }
+
+        .profile-box-wrapper {
+                text-decoration: none;
+        }
+
+        .profile-box {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #3e612d;          
+            border-radius: 15px;
+            transition: 0.2s;
+        }
+
+        .profile-box:hover {
+            background: #355528;
+            cursor: pointer;
+        }
+
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            margin: 0;
+            color: white;
+            font-weight: 500;
+        }
+
+        /*LOGIN and REGISTER*/
+    
+        .login-wrapper {
+            display: flex;
+            height: 100vh;
+        }
+
+        .login-left {
+            width: 55%;
+            background: url('../assets/login_bg.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+
+        .login-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(34, 82, 41, 0.55); 
+        }
+
+        
+        .login-right {
+            width: 45%;
+            background: white;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        
+        .login-top-buttons {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        
+        .btn-register-small {
+            border: 2px solid #0f3d2e;
+            padding: 6px 16px;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 14px;
+            color: #0f3d2e;
+            transition: 0.2s;
+        }
+
+        .btn-register-small:hover {
+            background: #0f3d2e;
+            color: #fff;
+        }
+
+       
+        .login-logo {
+            width: 65px;
+        }
+
+        
+        .login-panel {
+            background: white;
+            padding: 40px 45px;
+            border-radius: 25px;
+            width: 80%;
+            
+        }
+
+        
+        .login-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #0f3d2e;
+        }
+
+        .login-subtitle {
+            color: #333;
+        }
+
+        .login-input {
+            border: 2px solid #0f3d2e;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 18px;
+        }
+
+        .login-forgot {
+            color: #b31212;
+            font-size: 14px;
+            float: right;
+            margin-bottom: 20px;
+            
+        }
+
+        
+        .login-btn {
+            background: #0f3d2e;
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 18px;
+        }
+
+        /*USER PROFILE*/
+        
+        .main-container {
+            display: flex;
+            background: #f7fbf4;  
+            min-height: 100vh;
+        }
+
+        
+        .profile-container {
+            flex: 1;
+            padding: 50px 80px;
+            margin-left: 300px;
+        }
+
+        
+        .profile-header {
+            font-size: 40px;
+            font-weight: 700;
+            color: #2e6b36;
+            margin-bottom: 40px;
+        }
+
+        
+        .profile-top-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+       
+        .profile-photo-wrapper {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #d9d9d9;
+        }
+
+        
+        .profile-edit-icon {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: white;
+            border-radius: 50%;
+            padding: 6px 8px;
+            font-size: 18px;
+            border: 2px solid #000;
+            cursor: pointer;
+        }
+
+        
+        .profile-name-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-name-display {
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .logout-btn {
+            margin-top: 10px;
+            padding: 6px 20px;
+            background: #b84545;
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        
+        .user-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 350px);
+            gap: 25px 80px;
+            margin-bottom: 60px;
+            margin-top: 40px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .info-value {
+            margin-top: 5px;
+            font-size: 18px;
+        }
+
+        .profile-remove-icon {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: white;
+            border: 2px solid #000;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .profile-remove-icon:hover {
+            background: #ffdddd;
+        }
+
+
+        /* PASSWORD BOX */
+        .password-box {
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            width: 550px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .password-box h3 {
+            margin-bottom: 20px;
+        }
+
+        .profile-input {
+            border-radius: 10px;
+            border: 2px solid #0f3d2e;
+        }
+
+        .profile-save-btn {
+            width: 100%;
+            padding: 12px;
+            background: #0f3d2e;
+            color: white;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        /* Global responsive overrides - keep layout usable on smaller screens */
+        @media (max-width: 1200px) {
+            .dashboard-container {
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 220px;
+            }
+
+            .dashboard-container {
+                margin-left: 220px;
+            }
+
+            .login-left {
+                display: none; /* simplify login layout on smaller screens */
+            }
+
+            .login-right {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Collapse/hide sidebar and let content go full width */
+            .sidebar {
+                position: fixed;
+                left: -260px;
+                top: 0;
+                height: 100vh;
+                z-index: 9999;
+                transition: left 0.25s ease;
+            }
+
+            /* When showing sidebar via a JS class, it can slide in by adding .sidebar--open */
+            .sidebar.sidebar--open {
+                left: 0;
+            }
+
+            .dashboard-container,
+            .profile-container,
+            .main-container {
+                margin-left: 0 !important;
+                padding: 18px !important;
+            }
+
+            .profile-container {
+                padding: 24px 18px !important;
+            }
+
+            .profile-top-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .user-info-grid {
+                grid-template-columns: 1fr;
+                gap: 16px 20px;
+            }
+
+            .profile-photo-wrapper {
+                width: 140px;
+                height: 140px;
+            }
+
+            .profile-header {
+                font-size: 28px;
+            }
+
+            .password-box {
+                width: 100%;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body { font-size: 14px; }
+
+            .menu-item { padding: 12px 18px; font-size: 15px; }
+
+            .login-panel { padding: 20px; width: 92%; }
+
+            .profile-name-display { font-size: 22px; }
+
+            .stat-value { font-size: 32px; }
+
+            /* Make buttons full-width for easier tapping */
+            .btn, .login-btn, .profile-save-btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
